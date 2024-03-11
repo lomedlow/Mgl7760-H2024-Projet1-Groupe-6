@@ -1,0 +1,11 @@
+flask
+sqlalchemy
+flask-sqlalchemy
+gunicorn
+mysql
+redis
+pylint
+pytest
+pdoc3
+coverage
+flake8
