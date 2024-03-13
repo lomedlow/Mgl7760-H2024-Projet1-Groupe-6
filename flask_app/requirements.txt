@@ -9,3 +9,4 @@ pytest
 pdoc3
 coverage
 flake8
+Flask-Testing
