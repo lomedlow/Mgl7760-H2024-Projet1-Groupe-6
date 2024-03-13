@@ -1,8 +1,8 @@
+import time
+import redis
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for
 from models import db, Livre, Auteur, Editeur, Categorie
-import time
-import redis
 
 app = Flask(__name__)
 

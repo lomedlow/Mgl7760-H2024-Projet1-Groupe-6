@@ -11,9 +11,12 @@ creer_environnement() {
     #Construire les images des démarer les contenaires
     docker-compose up --build -d
 
+    #Construire l'image de Jenkins
+    bash ./jenkins/install-jenkins.sh
+
 
     #Execution du build privee avec make
-    make all
+    #make all
 
     exit;
 }
@@ -23,6 +26,11 @@ supprimer_environnement() {
     echo "Suppression de l'environnement de développement... Etre dans le répertoire du projet"
     # Commande pour supprimer tous les conteneurs
     docker-compose down
+
+    #Arreter et supprimer le conteneur et l'image de jenkins
+    #docker stop $(docker ps -aq)
+    docker stop jenkins_biblio
+    docker rm jenkins_biblio
 
     exit;
 }
