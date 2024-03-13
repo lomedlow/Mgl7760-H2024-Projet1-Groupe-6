@@ -12,8 +12,9 @@ creer_environnement() {
     docker-compose up --build -d
 
     #Construire l'image de Jenkins
-    bash ./jenkins/install-jenkins.sh
-
+    #bash ./jenkins/install-jenkins.sh
+    docker pull jenkins/jenkins
+    sudo docker run -p 8080:8080 --name=jenkins_biblio -d jenkins/jenkins
 
     #Execution du build privee avec make
     #make all

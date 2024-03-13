@@ -17,7 +17,7 @@ test:
 # Génération de la documentation avec pdoc
 doc:
 	docker-compose exec biblio_app pdoc --force --html .
-	docker cp biblio:/app/html/app.html ~/Bureau/mgl7760_projet1/documentation_pdoc/app_pdoc.html
+	docker cp biblio:/app/html/app.html ./documentation_pdoc/app_pdoc.html
 
 # Vérification de la couverture du code avec coverage
 coverage:
@@ -28,8 +28,8 @@ coverage:
 
 #Copie des rapports
 copy-reports:
-	docker cp biblio:/app/reports/test-results.xml ~/Bureau/mgl7760_projet1/reports/test-results.xml
-	docker cp biblio:/app/reports/coverage.xml ~/Bureau/mgl7760_projet1/reports/coverage.xml
+	docker cp biblio:/app/reports/test-results.xml ./reports/test-results.xml
+	docker cp biblio:/app/reports/coverage.xml ./reports/coverage.xml
 
 
 # Exécution de toutes les tâches
