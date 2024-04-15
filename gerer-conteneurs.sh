@@ -12,7 +12,7 @@ creer_environnement() {
     docker-compose up --build -d
 
     #Construire l'image de Jenkins
-    bash ./jenkins/install-jenkins.sh
+    #bash ./jenkins/install-jenkins.sh
 
 
     #Execution du build privee avec make
@@ -29,8 +29,8 @@ supprimer_environnement() {
 
     #Arreter et supprimer le conteneur et l'image de jenkins
     #docker stop $(docker ps -aq)
-    docker stop jenkins_biblio
-    docker rm jenkins_biblio
+    #docker stop jenkins_biblio
+    #docker rm jenkins_biblio
 
     exit;
 }
@@ -76,7 +76,7 @@ afficher_menu() {
     echo "3. Insertion dans le MySql"
     echo "4. Démarrer des conteneurs"
     echo "5. Arrêter des conteneurs"
-    echo "6. Executer build prive"
+    echo "6. Executer build prive avec make"
     echo "7. Quitter"
 }
 

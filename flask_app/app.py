@@ -35,7 +35,9 @@ with app.app_context():
 def index():
     categories = Categorie.query.all()  # Récupère toutes les catégories de la base de données
     count = get_hit_count()
-    return render_template('index.html', categories=categories, count=count)
+    # Obtenir la date actuelle dans le format souhaité
+    date_du_jour = datetime.now().strftime("%d-%m-%Y")
+    return render_template('index.html', categories=categories, count=count, date_du_jour=date_du_jour, message="Biblio")
 
 
 # Route pour afficher tous les livres

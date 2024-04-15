@@ -63,7 +63,9 @@ with app.app_context():
 def index():
     categories = Categorie.query.all()  # Récupère toutes les catégories de la base de données
     count = get_hit_count()
-    return render_template(&#39;index.html&#39;, categories=categories, count=count)
+    # Obtenir la date actuelle dans le format souhaité
+    date_du_jour = datetime.now().strftime(&#34;%d-%m-%Y&#34;)
+    return render_template(&#39;index.html&#39;, categories=categories, count=count, date_du_jour=date_du_jour, message=&#34;Biblio&#34;)
 
 
 # Route pour afficher tous les livres
@@ -157,7 +159,9 @@ if __name__ == &#34;__main__&#34;:
 def index():
     categories = Categorie.query.all()  # Récupère toutes les catégories de la base de données
     count = get_hit_count()
-    return render_template(&#39;index.html&#39;, categories=categories, count=count)</code></pre>
+    # Obtenir la date actuelle dans le format souhaité
+    date_du_jour = datetime.now().strftime(&#34;%d-%m-%Y&#34;)
+    return render_template(&#39;index.html&#39;, categories=categories, count=count, date_du_jour=date_du_jour, message=&#34;Biblio&#34;)</code></pre>
 </details>
 </dd>
 <dt id="app.lister_livres"><code class="name flex">
