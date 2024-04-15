@@ -28,8 +28,8 @@ coverage:
 
 #Copie des rapports
 copy-reports:
-	docker cp biblio1:/app/reports/test-results.xml ./reports/test-results.xml
-	docker cp biblio1:/app/reports/coverage.xml ./reports/coverage.xml
+	docker cp biblio1:/app/reports/test-results.xml ./test-results.xml
+	docker cp biblio1:/app/reports/coverage.xml ./coverage.xml
 
 
 # Exécution de toutes les tâches

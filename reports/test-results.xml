@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite errors="0" failures="0" hostname="55bc423fcb3d" name="pytest" skipped="0" tests="2" time="0.985" timestamp="2024-04-14T20:37:49.636327"><testcase classname="tests.test_app" name="test_lister_livres_page" time="0.129" /><testcase classname="tests.test_app" name="test_home_page" time="0.025" /></testsuite></testsuites>
