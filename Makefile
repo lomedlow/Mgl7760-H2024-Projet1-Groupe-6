@@ -5,7 +5,8 @@
 # Analyse statique du code avec Pylint ou Flake8
 #	-docker-compose exec biblio_app flake8 /app
 lint:
-	docker-compose exec biblio_app1 pylint app.py models.py importer.py
+	pylint app.py models.py importer.py
+#	docker-compose exec biblio_app1 pylint app.py models.py importer.py
 #	-docker-compose exec biblio_app flake8 .
 
 # Exécution des tests unitaires avec pytest
