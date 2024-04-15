@@ -2,11 +2,6 @@
 
 .PHONY: lint test doc coverage
 
-#Build
-build:
-	-docker-compose rm -fs
-	docker-compose up --build -d
-
 # Analyse statique du code avec Pylint ou Flake8
 #	-docker-compose exec biblio_app flake8 /app
 lint:
@@ -38,4 +33,4 @@ copy-reports:
 
 
 # Exécution de toutes les tâches
-all: build lint test doc coverage copy-reports
+all: lint test doc coverage copy-reports

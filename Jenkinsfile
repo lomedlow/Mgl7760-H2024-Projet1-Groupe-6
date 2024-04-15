@@ -7,11 +7,6 @@ pipeline {
                 checkout scm // s'Assurer que notre dépôt Git est configurer
             }
         }
-        stage('build') {
-            steps {
-                sh 'make build'
-            }
-        }
         stage('Lint') {
             steps {
                 sh 'make lint'
