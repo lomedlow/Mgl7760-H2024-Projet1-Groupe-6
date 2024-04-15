@@ -4,7 +4,12 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm // Assurez-vous de configurer votre dépôt Git
+                checkout scm // s'Assurer que notre dépôt Git est configurer
+            }
+        }
+        stage('build') {
+            steps {
+                sh 'make build'
             }
         }
         stage('Lint') {

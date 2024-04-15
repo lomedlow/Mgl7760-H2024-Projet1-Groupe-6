@@ -4,6 +4,14 @@
 
 # Analyse statique du code avec Pylint ou Flake8
 #	-docker-compose exec biblio_app flake8 /app
+build:
+	echo "Création de l'environnement de développement..."
+    echo killing old docker processes
+    docker-compose rm -fs
+    #Construire les images des démarer les contenaires
+    docker-compose up --build -d
+
+
 lint:
 	-docker-compose exec biblio_app1 pylint app.py models.py importer.py
 #	-docker-compose exec biblio_app flake8 .
@@ -33,4 +41,4 @@ copy-reports:
 
 
 # Exécution de toutes les tâches
-all: lint test doc coverage copy-reports
+all: build lint test doc coverage copy-reports
