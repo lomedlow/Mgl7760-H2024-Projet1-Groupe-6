@@ -5,7 +5,7 @@
 #Build
 build:
 	-docker-compose rm -fs
-	-docker-compose up --build -d
+	docker-compose up --build -d
 
 # Analyse statique du code avec Pylint ou Flake8
 #	-docker-compose exec biblio_app flake8 /app
