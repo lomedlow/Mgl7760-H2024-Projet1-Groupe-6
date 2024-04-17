@@ -10,7 +10,7 @@ lint:
 
 # Exécution des tests unitaires avec pytest
 test:
-	-docker-compose exec biblio_app1 pytest
+	docker-compose exec biblio_app1 pytest
 	-docker-compose exec biblio_app1 pytest --junitxml=reports/test-results.xml
 
 
