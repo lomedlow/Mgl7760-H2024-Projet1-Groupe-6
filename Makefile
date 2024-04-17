@@ -16,7 +16,7 @@ test:
 
 # Génération de la documentation avec pdoc
 doc:
-	-docker-compose exec biblio_app1 pdoc --force --html .
+	docker-compose exec biblio_app1 pdoc --force --html .
 	-docker cp biblio1:/app/html/app.html ./documentation_pdoc/app_pdoc.html
 
 # Vérification de la couverture du code avec coverage
