@@ -7,6 +7,12 @@ pipeline {
                 checkout scm // s'Assurer que notre dépôt Git est configurer
             }
         }
+        stage('installation') {
+           steps {
+                sh 'docker-compose up --build -d'
+                sh 'docker-compose ps'
+            }
+        }
         stage('Lint') {
            steps {
                 sh 'docker-compose ps'
