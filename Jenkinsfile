@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Lint') {
            steps {
-                sh 'docker-compose ps'
+
                 sh 'make lint'
             }
         }
