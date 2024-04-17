@@ -9,7 +9,8 @@ pipeline {
         }
         stage('Lint') {
            steps {
-               sh 'make lint'
+                sh 'docker-compose ps'
+                sh 'make lint'
             }
         }
         stage('Test') {
