@@ -9,7 +9,7 @@ pipeline {
         }
         stage('installation') {
            steps {
-                sh 'docker-compose up --build -d'
+                sh 'docker-compose up --build'
                 sh 'docker-compose ps'
             }
         }
@@ -42,6 +42,7 @@ pipeline {
     }
     post {
         always {
+            sh 'docker-compose down'
             cleanWs()
         }
         success {
