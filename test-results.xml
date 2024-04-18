@@ -1,1 +1,2 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite errors="0" failures="0" hostname="55bc423fcb3d" name="pytest" skipped="0" tests="2" time="1.097" timestamp="2024-04-15T00:59:38.752829"><testcase classname="tests.test_app" name="test_lister_livres_page" time="0.122" /><testcase classname="tests.test_app" name="test_home_page" time="0.020" /></testsuite></testsuites>
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite errors="0" failures="0" hostname="55bc423fcb3d" name="pytest" skipped="0" tests="2" time="1.097" timestamp="2024-04-15T00:59:38.752829"><testcase classname="tests.test_app" name="test_lister_livres_page" time="0.122" />
+<testcase classname="tests.test_app" name="test_home_page" time="0.020" /></testsuite></testsuites>
