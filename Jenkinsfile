@@ -9,7 +9,6 @@ pipeline {
         }
         stage('Lint') {
            steps {
-
                 sh 'make lint'
             }
         }

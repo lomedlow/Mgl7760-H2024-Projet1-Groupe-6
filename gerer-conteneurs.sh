@@ -43,7 +43,7 @@ supprimer_environnement() {
 inserer_dans_bd() {
     echo "Insertion dans la Base de données"
     #cd flask_app
-    docker exec -it biblio python importer.py
+    docker exec -it biblio1 python importer.py
     #cd ..
     exit;
 }

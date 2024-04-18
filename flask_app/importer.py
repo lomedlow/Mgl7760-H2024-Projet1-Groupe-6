@@ -61,4 +61,4 @@ def importer_donnees(csv_filepath):
 
 
 if __name__ == "__main__":
-    importer_donnees("./biblio.csv")
+    importer_donnees("./2_biblio_insert.csv")
