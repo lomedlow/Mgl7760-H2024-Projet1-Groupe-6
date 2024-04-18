@@ -18,6 +18,10 @@ creer_environnement() {
     #Execution du build privee avec make
     #make all
 
+    echo "Insertion dans la Base de données"
+    #cd flask_app
+    docker exec -it biblio1 python importer.py
+
     exit;
 }
 
