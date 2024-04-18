@@ -1,0 +1,21 @@
+title;description;isbn;annee_apparition;image;auteurs;editeur;categories
+Effective Java;;978-0-134-56789-0;2018;;Joshua Bloch;Addison Wesley;Java, Programming
+Mastering Kubernetes;;978-1-234-56789-1;2019;;Gigi Sayfan;O’REILLY;Distributed Systems, Programming
+The Clean Coder;;978-0-321-67809-8;2011;;Robert C. Martin;Prentice Hall;Programming, Software Development
+Distributed Systems Principles and Paradigms;;0-132-39927-8;2002;;Andrew S. Tanenbaum,Maarten Van Steen;Prentice Hall;Distributed Systems
+Cloud Native Go;;978-0-321-70001-1;2016;;Matthew A. Titmus;Addison Wesley;Programming, Go, Cloud Computing
+The Linux Command Line;;978-1-593-27580-1;2009;;William Shotts;No Starch Press;UNIX, Programming
+Deep Learning with Python;;978-1-617-29018-1;2017;;François Chollet;Manning;Machine Learning, Python, Programming
+Patterns of Enterprise Application Architecture;;978-0-321-12742-6;2003;;Martin Fowler;Addison Wesley;Software Architecture, Programming
+Clean Architecture;;978-0-131-98948-0;2017;;Robert C. Martin;Prentice Hall;Software Architecture, Programming
+Python for Data Analysis;;978-1-492-03205-9;2017;;Wes McKinney;O’Reilly;Data Science, Python, Programming
+The Ruby Programming Language;;978-0-596-51617-8;2008;;David Flanagan,Yukihiro Matsumoto;O’Reilly;Ruby, Programming Languages
+Design Patterns;;0-201-63361-2;1994;;Erich Gamma,Richard Helm,Ralph Johnson,John Vlissides;Addison Wesley;Software Design, Programming
+Rust for Rustaceans;;978-1-492-05746-1;2022;;Jon Gjengset;No Starch Press;Rust, Programming Languages
+Swift Programming;;978-1-491-95731-3;2016;;Matthew Mathias,John Gallagher;O’Reilly;Swift, Programming Languages
+SQL Antipatterns;;978-1-935-18230-3;2010;;Bill Karwin;Pragmatic Bookshelf;Databases, Programming
+Essential TypeScript;;978-1-939-92876-2;2019;;Adam Freeman;APress;TypeScript, Programming Languages
+The C# Programming Language;;0-321-15491-6;2003;;Anders Hejlsberg;Microsoft Press;C#, Programming Languages
+Learning React;;978-1-491-95765-8;2020;;Alex Banks,Eve Porcello;O’Reilly;Web Development, JavaScript
+Networks and Systems;;0-123-45678-9;1993;;Roy Choudhury;McGraw Hill;Computer Networks, Distributed Systems
+Modern Compiler Implementation in C;;978-0-521-60765-5;1998;;Andrew W. Appel;Cambridge;Compilers, Programming

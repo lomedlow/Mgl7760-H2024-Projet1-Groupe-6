@@ -27,20 +27,22 @@
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">import time
-import redis
+import redis  # type: ignore
 from datetime import datetime
-from flask import Flask, render_template, request, redirect, url_for
-from models import db, Livre, Auteur, Editeur, Categorie
+from flask import Flask, render_template, request
+from models import db, Livre, Categorie
 
 app = Flask(__name__)
 
-#Verification redis
-cache = redis.Redis(host=&#39;redis&#39;, port=6379)
+# Verification redis
+cache = redis.Redis(host=&#34;redis&#34;, port=6379)
+
+
 def get_hit_count():
     retries = 5
     while True:
         try:
-            return cache.incr(&#39;hits&#39;)
+            return cache.incr(&#34;hits&#34;)
         except redis.exceptions.ConnectionError as exc:
             if retries == 0:
                 raise exc
@@ -49,73 +51,80 @@ def get_hit_count():
 
 
 # Configuration de la base de données
-app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;] = &#39;mysql://root:motpass@dbmysql/bibliodb&#39;
-app.config[&#39;SQLALCHEMY_TRACK_MODIFICATIONS&#39;] = False
+app.config[&#34;SQLALCHEMY_DATABASE_URI&#34;] = &#34;mysql://root:motpass@dbmysql/bibliodb&#34;
+app.config[&#34;SQLALCHEMY_TRACK_MODIFICATIONS&#34;] = False
 db.init_app(app)
-
 
 
 with app.app_context():
     db.create_all()
 
+
 # Page d&#39;accueil qui pourrait afficher les livres ou avoir des liens vers d&#39;autres fonctionnalités
-@app.route(&#39;/&#39;)
+@app.route(&#34;/&#34;)
 def index():
-    categories = Categorie.query.all()  # Récupère toutes les catégories de la base de données
+    categories = (
+        Categorie.query.all()
+    )  # Récupère toutes les catégories de la base de données
     count = get_hit_count()
     # Obtenir la date actuelle dans le format souhaité
     date_du_jour = datetime.now().strftime(&#34;%d-%m-%Y&#34;)
-    return render_template(&#39;index.html&#39;, categories=categories, count=count, date_du_jour=date_du_jour, message=&#34;Biblio&#34;)
+    return render_template(
+        &#34;index.html&#34;,
+        categories=categories,
+        count=count,
+        date_du_jour=date_du_jour,
+        message=&#34;Biblio&#34;,
+    )
 
 
 # Route pour afficher tous les livres
-@app.route(&#39;/livres&#39;)
+@app.route(&#34;/livres&#34;)
 def lister_livres():
     livres = Livre.chercher_tous()
-    return render_template(&#39;liste_livres.html&#39;, livres=livres)
+    return render_template(&#34;liste_livres.html&#34;, livres=livres)
+
 
 # Route pour afficher les détails d&#39;un livre spécifique
-@app.route(&#39;/livres/&lt;int:id&gt;&#39;)
+@app.route(&#34;/livres/&lt;int:id&gt;&#34;)
 def livre_details(id):
     livre = Livre.query.get_or_404(id)
-    return render_template(&#39;details_livre.html&#39;, livre=livre)
+    return render_template(&#34;details_livre.html&#34;, livre=livre)
+
 
 # Route pour filtrer les livres par catégorie
-@app.route(&#39;/categories/&lt;int:categorie_id&gt;&#39;)
+@app.route(&#34;/categories/&lt;int:categorie_id&gt;&#34;)
 def livres_par_categorie(categorie_id):
     categorie = Categorie.query.get_or_404(categorie_id)
     livres = Livre.chercher_par_categorie(categorie_id)
-    return render_template(&#39;liste_livres.html&#39;, livres=livres, categorie=categorie)
-
+    return render_template(&#34;liste_livres.html&#34;, livres=livres, categorie=categorie)
 
 
 # Route pour rechercher des livres par titre
-@app.route(&#39;/recherche/titre&#39;, methods=[&#39;GET&#39;])
+@app.route(&#34;/recherche/titre&#34;, methods=[&#34;GET&#34;])
 def recherche_par_titre():
-    titre = request.args.get(&#39;titre&#39;)  # Récupère le titre du formulaire de recherche
+    titre = request.args.get(&#34;titre&#34;)  # Récupère le titre du formulaire de recherche
     livres = Livre.chercher_par_titre(titre)
-    return render_template(&#39;liste_livres.html&#39;, livres=livres)
+    return render_template(&#34;liste_livres.html&#34;, livres=livres)
 
 
 # Route pour rechercher des livres par auteur
-@app.route(&#39;/recherche/auteur&#39;, methods=[&#39;GET&#39;])
+@app.route(&#34;/recherche/auteur&#34;, methods=[&#34;GET&#34;])
 def recherche_par_auteur():
-    auteur_nom = request.args.get(&#39;auteur&#39;)
+    auteur_nom = request.args.get(&#34;auteur&#34;)
     livres = Livre.chercher_par_auteur(auteur_nom)
-    return render_template(&#39;liste_livres.html&#39;, livres=livres)
+    return render_template(&#34;liste_livres.html&#34;, livres=livres)
 
 
-
-@app.route(&#39;/associations&#39;)
+@app.route(&#34;/associations&#34;)
 def voir_associations():
     # Cette requête va récupérer tous les livres avec leurs auteurs associés
     livres = Livre.query.all()
-    return render_template(&#39;associations.html&#39;, livres=livres)
-
+    return render_template(&#34;associations.html&#34;, livres=livres)
 
 
 if __name__ == &#34;__main__&#34;:
-    app.run(debug=True, host=&#39;0.0.0.0&#39;, port=5000)</code></pre>
+    app.run(debug=True, host=&#34;0.0.0.0&#34;, port=5000)</code></pre>
 </details>
 </section>
 <section>
@@ -138,7 +147,7 @@ if __name__ == &#34;__main__&#34;:
     retries = 5
     while True:
         try:
-            return cache.incr(&#39;hits&#39;)
+            return cache.incr(&#34;hits&#34;)
         except redis.exceptions.ConnectionError as exc:
             if retries == 0:
                 raise exc
@@ -155,13 +164,21 @@ if __name__ == &#34;__main__&#34;:
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">@app.route(&#39;/&#39;)
+<pre><code class="python">@app.route(&#34;/&#34;)
 def index():
-    categories = Categorie.query.all()  # Récupère toutes les catégories de la base de données
+    categories = (
+        Categorie.query.all()
+    )  # Récupère toutes les catégories de la base de données
     count = get_hit_count()
     # Obtenir la date actuelle dans le format souhaité
     date_du_jour = datetime.now().strftime(&#34;%d-%m-%Y&#34;)
-    return render_template(&#39;index.html&#39;, categories=categories, count=count, date_du_jour=date_du_jour, message=&#34;Biblio&#34;)</code></pre>
+    return render_template(
+        &#34;index.html&#34;,
+        categories=categories,
+        count=count,
+        date_du_jour=date_du_jour,
+        message=&#34;Biblio&#34;,
+    )</code></pre>
 </details>
 </dd>
 <dt id="app.lister_livres"><code class="name flex">
@@ -173,10 +190,10 @@ def index():
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">@app.route(&#39;/livres&#39;)
+<pre><code class="python">@app.route(&#34;/livres&#34;)
 def lister_livres():
     livres = Livre.chercher_tous()
-    return render_template(&#39;liste_livres.html&#39;, livres=livres)</code></pre>
+    return render_template(&#34;liste_livres.html&#34;, livres=livres)</code></pre>
 </details>
 </dd>
 <dt id="app.livre_details"><code class="name flex">
@@ -188,10 +205,10 @@ def lister_livres():
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">@app.route(&#39;/livres/&lt;int:id&gt;&#39;)
+<pre><code class="python">@app.route(&#34;/livres/&lt;int:id&gt;&#34;)
 def livre_details(id):
     livre = Livre.query.get_or_404(id)
-    return render_template(&#39;details_livre.html&#39;, livre=livre)</code></pre>
+    return render_template(&#34;details_livre.html&#34;, livre=livre)</code></pre>
 </details>
 </dd>
 <dt id="app.livres_par_categorie"><code class="name flex">
@@ -203,11 +220,11 @@ def livre_details(id):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">@app.route(&#39;/categories/&lt;int:categorie_id&gt;&#39;)
+<pre><code class="python">@app.route(&#34;/categories/&lt;int:categorie_id&gt;&#34;)
 def livres_par_categorie(categorie_id):
     categorie = Categorie.query.get_or_404(categorie_id)
     livres = Livre.chercher_par_categorie(categorie_id)
-    return render_template(&#39;liste_livres.html&#39;, livres=livres, categorie=categorie)</code></pre>
+    return render_template(&#34;liste_livres.html&#34;, livres=livres, categorie=categorie)</code></pre>
 </details>
 </dd>
 <dt id="app.recherche_par_auteur"><code class="name flex">
@@ -219,11 +236,11 @@ def livres_par_categorie(categorie_id):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">@app.route(&#39;/recherche/auteur&#39;, methods=[&#39;GET&#39;])
+<pre><code class="python">@app.route(&#34;/recherche/auteur&#34;, methods=[&#34;GET&#34;])
 def recherche_par_auteur():
-    auteur_nom = request.args.get(&#39;auteur&#39;)
+    auteur_nom = request.args.get(&#34;auteur&#34;)
     livres = Livre.chercher_par_auteur(auteur_nom)
-    return render_template(&#39;liste_livres.html&#39;, livres=livres)</code></pre>
+    return render_template(&#34;liste_livres.html&#34;, livres=livres)</code></pre>
 </details>
 </dd>
 <dt id="app.recherche_par_titre"><code class="name flex">
@@ -235,11 +252,11 @@ def recherche_par_auteur():
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">@app.route(&#39;/recherche/titre&#39;, methods=[&#39;GET&#39;])
+<pre><code class="python">@app.route(&#34;/recherche/titre&#34;, methods=[&#34;GET&#34;])
 def recherche_par_titre():
-    titre = request.args.get(&#39;titre&#39;)  # Récupère le titre du formulaire de recherche
+    titre = request.args.get(&#34;titre&#34;)  # Récupère le titre du formulaire de recherche
     livres = Livre.chercher_par_titre(titre)
-    return render_template(&#39;liste_livres.html&#39;, livres=livres)</code></pre>
+    return render_template(&#34;liste_livres.html&#34;, livres=livres)</code></pre>
 </details>
 </dd>
 <dt id="app.voir_associations"><code class="name flex">
@@ -251,11 +268,11 @@ def recherche_par_titre():
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">@app.route(&#39;/associations&#39;)
+<pre><code class="python">@app.route(&#34;/associations&#34;)
 def voir_associations():
     # Cette requête va récupérer tous les livres avec leurs auteurs associés
     livres = Livre.query.all()
-    return render_template(&#39;associations.html&#39;, livres=livres)</code></pre>
+    return render_template(&#34;associations.html&#34;, livres=livres)</code></pre>
 </details>
 </dd>
 </dl>
